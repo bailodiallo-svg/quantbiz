@@ -8,7 +8,6 @@ expenses = float(input("Enter your expenses (£): "))
 customers = int(input("Enter number of customers: "))
 
 profit = revenue - expenses
-revenue_per_customer = revenue / customers
 
 marketing_spend = float(input("Enter your marketing spend (£): "))
 new_customers = int(input("Enter number of new customers: "))
@@ -19,7 +18,6 @@ print("\n------ BUSINESS RESULTS ------")
 print(f"Revenue: £{revenue:.2f}")
 print(f"Expenses: £{expenses:.2f}")
 print(f"Profit: £{profit:.2f}")
-print(f"Revenue per Customer: £{revenue_per_customer:.2f}")
 
 def calculate_profit(revenue,expenses):
     return revenue - expenses
@@ -52,3 +50,16 @@ if CAC_from_function is not None:
     print(f"Customer Acquisition Cost calculated from function: £{CAC_from_function:.2f}")
 else:
     print("Customer Acquisition Cost calculated from function: Undefined (No new customers)")
+
+def calcualate_revenue_per_customer(revenue, customers):
+    if customers == 0:
+        return None 
+    else:
+        return revenue / customers
+
+revenue_per_customer_from_function = calcualate_revenue_per_customer(revenue, customers)
+
+if revenue_per_customer_from_function is not None:
+    print(f"Revenue per Customer calculated from function: £{revenue_per_customer_from_function:.2f}")
+else:
+    print("Revenue per Customer calculated from function: Undefined (No customers)")
