@@ -3,58 +3,24 @@ print("        QUANTBIZ")
 print("   Business Analytics Tool")
 print("================================")
 
-try:
-    revenue = float(input("Enter your revenue (£): "))
-except ValueError:
-    print("Invalid input for revenue. Please enter a numeric value.")
-    exit(1)
+def get_non_negative_float(prompt):
+    while True:
+        try:
+            value = float(input(prompt))
+            if value < 0:
+                print("Please enter a non-negative number.")
+            else:
+                return value
+        except ValueError:
+            print("Invalid input. Please enter a numeric value.")
 
-if revenue < 0:
-    print("Revenue cannot be negative. Please enter a valid amount.")
-    exit(1)
-
-try:
-    expenses = float(input("Enter your expenses (£): "))
-except ValueError:
-    print("Invalid input for expenses. Please enter a numeric value.")
-    exit(1)
-
-if expenses < 0:
-    print("Expenses cannot be negative. Please enter a valid amount.")
-    exit(1)
-
-try:
-    customers = int(input("Enter number of customers: "))
-except ValueError:
-    print("Invalid input for customers. Please enter a whole number.")
-    exit(1)
-
-if customers < 0:   
-    print("Number of customers cannot be negative. Please enter a valid number.")
-    exit(1)
+revenue = get_non_negative_float("Enter your revenue (£): ")
+expenses = get_non_negative_float("Enter your expenses (£): ")
+customers = get_non_negative_float("Enter number of customers: ")
+marketing_spend = get_non_negative_float("Enter marketing spend (£): ")
+new_customers = get_non_negative_float("Enter number of new customers acquired: ")
 
 profit = revenue - expenses
-
-try:
-    marketing_spend = float(input("Enter marketing spend (£): "))
-except ValueError:
-    print("Invalid input for marketing spend. Please enter a numeric value.")
-    exit(1)
-
-if marketing_spend < 0:
-    print("Marketing spend cannot be negative. Please enter a valid amount.")
-    exit(1)
-
-try:
-    new_customers = int(input("Enter number of new customers acquired: "))
-except ValueError:
-    print("Invalid input for new customers. Please enter a whole number.")
-    exit(1)
-
-if new_customers < 0:
-    print("Number of new customers cannot be negative. Please enter a valid number.")
-    exit(1)
-
 
 print("\n------ BUSINESS RESULTS ------")
 
