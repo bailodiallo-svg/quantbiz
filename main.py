@@ -14,12 +14,25 @@ def get_non_negative_float(prompt):
         except ValueError:
             print("Invalid input. Please enter a numeric value.")
 
+def get_non_negative_int(prompt):
+    while True:
+        try:
+            value = int(input(prompt))
+            if value < 0:
+                print("Please enter a non-negative integer.")
+            else:
+                return value
+        except ValueError:
+            print("Invalid input. Please enter an integer value.")
+
 revenue = get_non_negative_float("Enter your revenue (£): ")
 expenses = get_non_negative_float("Enter your expenses (£): ")
-customers = get_non_negative_float("Enter number of customers: ")
 marketing_spend = get_non_negative_float("Enter marketing spend (£): ")
-new_customers = get_non_negative_float("Enter number of new customers acquired: ")
+customers = get_non_negative_int("Enter number of customers: ")
 
+new_customers = get_non_negative_int(
+    "Enter number of new customers acquired: "
+)
 profit = revenue - expenses
 
 print("\n------ BUSINESS RESULTS ------")
