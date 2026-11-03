@@ -1,7 +1,23 @@
-print("================================")
-print("        QUANTBIZ")
-print("   Business Analytics Tool")
-print("================================")
+def calculate_profit(revenue, expenses):
+    return revenue - expenses
+
+
+def calculate_profit_margin(profit, revenue):
+    if revenue == 0:
+        return None
+    return (profit / revenue) * 100
+
+
+def calculate_CAC(marketing_spend, new_customers):
+    if new_customers == 0:
+        return None
+    return marketing_spend / new_customers
+
+
+def calculate_revenue_per_customer(revenue, customers):
+    if customers == 0:
+        return None
+    return revenue / customers
 
 def get_non_negative_float(prompt):
     while True:
@@ -14,6 +30,7 @@ def get_non_negative_float(prompt):
         except ValueError:
             print("Invalid input. Please enter a numeric value.")
 
+
 def get_non_negative_int(prompt):
     while True:
         try:
@@ -25,63 +42,57 @@ def get_non_negative_int(prompt):
         except ValueError:
             print("Invalid input. Please enter an integer value.")
 
-revenue = get_non_negative_float("Enter your revenue (£): ")
-expenses = get_non_negative_float("Enter your expenses (£): ")
-marketing_spend = get_non_negative_float("Enter marketing spend (£): ")
-customers = get_non_negative_int("Enter number of customers: ")
 
-new_customers = get_non_negative_int(
-    "Enter number of new customers acquired: "
-)
-profit = revenue - expenses
+def main():
+    print("================================")
+    print("        QUANTBIZ")
+    print("   Business Analytics Tool")
+    print("================================")
 
-print("\n------ BUSINESS RESULTS ------")
+    # Collect inputs
+    revenue = get_non_negative_float("Enter your revenue (£): ")
+    expenses = get_non_negative_float("Enter your expenses (£): ")
+    marketing_spend = get_non_negative_float("Enter marketing spend (£): ")
+    customers = get_non_negative_int("Enter number of customers: ")
+    new_customers = get_non_negative_int(
+        "Enter number of new customers acquired: "
+    )
 
-print(f"Revenue: £{revenue:.2f}")
-print(f"Expenses: £{expenses:.2f}")
-print(f"Profit: £{profit:.2f}")
+    # Calculate profit
+    profit = calculate_profit(revenue, expenses)
 
-def calculate_profit(revenue,expenses):
-    return revenue - expenses
+    # Display business results
+    print("\n------ BUSINESS RESULTS ------")
+    print(f"Revenue: £{revenue:.2f}")
+    print(f"Expenses: £{expenses:.2f}")
+    print(f"Profit: £{profit:.2f}")
 
-profit_from_function = calculate_profit(revenue, expenses)
-print(f"\nProfit calculated from function: £{profit_from_function:.2f}")
+    # Calculate profit margin
+    profit_margin = calculate_profit_margin(profit, revenue)
 
-def calculate_profit_margin(profit, revenue):
-    if revenue == 0:
-        return None 
+    if profit_margin is not None:
+        print(f"Profit Margin: {profit_margin:.2f}%")
     else:
-        return (profit / revenue) * 100
+        print("Profit Margin: Undefined (Revenue is zero)")
 
-profit_margin_from_function = calculate_profit_margin(profit_from_function, revenue)
+    # Calculate customer acquisition cost
+    CAC = calculate_CAC(marketing_spend, new_customers)
 
-if profit_margin_from_function is not None:
-    print(f"Profit Margin calculated from function: {profit_margin_from_function:.2f}%")
-else:
-    print("Profit Margin calculated from function: Undefined (Revenue is zero)")
-
-def calculate_CAC(marketing_spend, new_customers):
-    if new_customers == 0:
-        return None 
+    if CAC is not None:
+        print(f"Customer Acquisition Cost: £{CAC:.2f}")
     else:
-        return marketing_spend / new_customers
+        print("Customer Acquisition Cost: Undefined (No new customers)")
 
-CAC_from_function = calculate_CAC(marketing_spend, new_customers)
+    # Calculate revenue per customer
+    revenue_per_customer = calculate_revenue_per_customer(
+        revenue, customers
+    )
 
-if CAC_from_function is not None:
-    print(f"Customer Acquisition Cost calculated from function: £{CAC_from_function:.2f}")
-else:
-    print("Customer Acquisition Cost calculated from function: Undefined (No new customers)")
-
-def calcualate_revenue_per_customer(revenue, customers):
-    if customers == 0:
-        return None 
+    if revenue_per_customer is not None:
+        print(f"Revenue per Customer: £{revenue_per_customer:.2f}")
     else:
-        return revenue / customers
+        print("Revenue per Customer: Undefined (No customers)")
 
-revenue_per_customer_from_function = calcualate_revenue_per_customer(revenue, customers)
 
-if revenue_per_customer_from_function is not None:
-    print(f"Revenue per Customer calculated from function: £{revenue_per_customer_from_function:.2f}")
-else:
-    print("Revenue per Customer calculated from function: Undefined (No customers)")
+if __name__ == "__main__":
+    main()
